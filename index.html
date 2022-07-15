@@ -1,0 +1,80 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+        <title></title>
+    </head>
+    <body>
+            <div class="container">
+                 <div id="display"> </div>
+                     <div class="buttons">
+                         <div class="button"  id="one"  onclick="play();">c</div>
+                         <div class="button" id="two" onclick="play();">/</div>
+                         <div class="button" id="three" onclick="play();">*</div>
+                         <div class="button" id="two" onclick="play();">Del</div>
+                         <div class="button" id="three" onclick="play();">7</div>
+                         <div class="button" id="one" onclick="play();">8</div>
+                         <div class="button" id="three" onclick="play();">9</div>
+                         <div class="button" id="one" onclick="play();">-</div>
+                         <div class="button" id="two" onclick="play();">4</div>
+                         <div class="button" id="one" onclick="play();">5</div>
+                         <div class="button" id="two" onclick="play();">6</div>
+                         <div class="button" id="three"  onclick="play();">+</div>
+                         <div class="button" id="two" onclick="play();">1</div>
+                         <div class="button" id="three" onclick="play();">2</div>
+                         <div class="button" id="one" onclick="play();">3</div>
+                         <div class="button" id="three" onclick="play();">.</div>
+                         <div class="button" id="one" onclick="play();">%</div>
+                         <div class="button" id="two" onclick="play();">0</div>
+                         <div class="button" id="one" onclick="play();">=</div>
+                         <div class="button" id="three" onclick="play();"></div>
+                     </div>     
+            </div>
+
+                  <audio id="audio" src="sounds/tink.wav"></audio>
+                  
+        <script>
+            function play(){
+                var sound = document.getElementById("audio");
+                sound.play();
+                if (!audio) return; //stop the function from running all together
+                audio.currentTime = 0; //rewind to the start
+                audio.play();
+                key.classList.add('playing');
+            }
+
+           
+
+
+
+
+              
+             display = document.getElementById('display');
+             buttons = Array.from(document.getElementsByClassName('button'));
+             
+
+             buttons.map(button => {
+                  button.addEventListener('click', (e) => {
+                      switch(e.target.innerText){
+                          case 'c' :
+                              display.innerText = '' ; break;
+                          
+                          case '=' :
+                              try{
+                                  display.innerText = eval(display.innerText);
+                              } catch{
+                                  display.innerText = "Error"
+                              }
+                              break;
+                          case 'Del' :
+                              if (display.innerText){
+                                  display.innerText = display.innerText.slice(0, -1);
+                              }
+                              break;
+                              default:
+                                  display.innerText += e.target.innerText;
+                      }
+                  });
+             });
+        </script>
+    </body>
+</html>
